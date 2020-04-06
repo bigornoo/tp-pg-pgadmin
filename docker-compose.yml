@@ -8,7 +8,7 @@ services:
     restart: unless-stopped
     environment: 
       POSTGRES_USER: toto
-      POSTGRES_PASSWORD: covid19
+      POSTGRES_PASSWORD: changeme
     volumes:
       - postgre_data:/var/lib/postgresql/data
     mem_limit: 300m
@@ -22,7 +22,7 @@ services:
     restart: unless-stopped
     environment: 
       PGADMIN_DEFAULT_EMAIL: covid-19@yopmail.com
-      PGADMIN_DEFAULT_PASSWORD: covid-19
+      PGADMIN_DEFAULT_PASSWORD: changeme
     ports:
       - 5580:80
     volumes: 
