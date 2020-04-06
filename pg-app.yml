@@ -12,10 +12,10 @@ spec:
       resources:
       limits:
         memory: "300Mi"
-        cpu: 300m
+        cpu: "0.5"
       requests:
         memory: "100Mi"
-        cpu: 150m
+        cpu: "0.3"
       volumeMounts: 
         - mountPath: /var/lib/postgresql/data
           name: postgre-data
@@ -31,8 +31,10 @@ spec:
       resources:
       limits:
         memory: "300Mi"
+        cpu: "0.5"
       requests:
         memory: "100Mi"
+        cpu: "0.3"
       volumeMounts: 
         - mountPath: /var/lib/pgadmin
           name: pgadmin-data
