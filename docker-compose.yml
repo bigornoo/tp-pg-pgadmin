@@ -1,0 +1,35 @@
+version: "2.4"
+
+services:
+  postgre:
+    container_name: postgre
+    hostname: postgre
+    image: postgres:12-alpine
+    restart: unless-stopped
+    environment: 
+      POSTGRES_USER: toto
+      POSTGRES_PASSWORD: covid19
+    volumes:
+      - postgre_data:/var/lib/postgresql/data
+    mem_limit: 300m
+    cpus: '0.3'
+
+  
+  pgadmin:
+    container_name: pgadmin
+    hostname: pgadmin
+    image: dpage/pgadmin4
+    restart: unless-stopped
+    environment: 
+      PGADMIN_DEFAULT_EMAIL: covid-19@yopmail.com
+      PGADMIN_DEFAULT_PASSWORD: covid-19
+    ports:
+      - 5580:80
+    volumes: 
+      - pgadmin_data:/var/lib/pgadmin
+    mem_limit: 600m
+    cpus: '0.3'
+
+volumes: 
+  postgre_data:
+  pgadmin_data:

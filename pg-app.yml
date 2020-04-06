@@ -1,0 +1,48 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: tppg-app
+  labels:
+    app: tppg-app
+spec:
+  containers:
+    - name: postgre
+      image: postgres:12-alpine
+      resources:
+      limits:
+        memory: "300Mi"
+      requests:
+        memory: "100Mi"
+      volumeMounts: 
+        - mountPath: /var/lib/postgresql/data
+          name: postgre-data
+      ports:
+        - containerPort: 5432
+      env:
+        - name: POSTGRES_USER
+          value: "toto"
+        - name: POSTGRES_PASSWORD
+          value: "covid19"
+    - name: pgadmin
+      image: dpage/pgadmin4
+      resources:
+      limits:
+        memory: "300Mi"
+      requests:
+        memory: "100Mi"
+      volumeMounts: 
+        - mountPath: /var/lib/pgadmin
+          name: pgadmin-data
+      ports:
+        - containerPort: 80
+      env:
+        - name: PGADMIN_DEFAULT_EMAIL
+          value: "covid-19@yopmail.com"
+        - name: PGADMIN_DEFAULT_PASSWORD
+          value: "covid-19"
+  volumes:
+    - name: postgre-data
+      emptyDir: {}
+    - name: pgadmin-data
+      emptyDir: {}
